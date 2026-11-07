@@ -25,4 +25,5 @@
 Для запуска визуального интерфейса (требуется Python 3):
 
 cd Путь\до\папки\case1_payment_service\03_код
+
 python interface_demo.py
