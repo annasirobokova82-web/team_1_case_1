@@ -1,0 +1,3 @@
+payment_id,order_id,recipient,purpose,amount,currency,status,error_code,idempotency_key,created_at,confirmed_at,correlation_id
+pay_demo_1002,ord_1002,clinic_medservice,Приём терапевта,2500.0,RUB,SUCCESS,,idem_auto_1002,2026-11-07T15:29:11Z,2026-11-07T15:29:11Z,corr_auto_1002
+pay_demo_5002,ord_5002,clinic_medservice,Приём терапевта,2500.0,RUB,DECLINED,INSUFFICIENT_FUNDS,idem_auto_5002,2026-11-07T15:29:24Z,,corr_auto_5002
