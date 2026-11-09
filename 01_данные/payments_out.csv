@@ -1,2 +1,0 @@
-pay_demo_1005,ord_1005,clinic_medservice,Приём терапевта,2500.0,RUB,SUCCESS,,idem_auto_1005,2026-11-09T14:30:25Z,2026-11-09T14:30:25Z,corr_auto_1005
-pay_demo_1009,ord_1009,clinic_medservice,Приём терапевта,2500.0,RUB,TIMEOUT,GATEWAY_TIMEOUT,idem_auto_1009,2026-11-09T14:30:36Z,,corr_auto_1009
