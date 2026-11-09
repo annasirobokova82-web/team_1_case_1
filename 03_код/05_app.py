@@ -58,13 +58,13 @@ def validate(payload, active_recipients):
 def emulate_gateway(order_id):
     """4 сценария для демонстрации"""
     # Новые тестовые номера, которых точно нет в исходном файле
-    if order_id == "ord_5001": 
+    if order_id == "ord_1001": 
         return "SUCCESS", None
-    elif order_id == "ord_5002": 
+    elif order_id == "ord_1002": 
         return "DECLINED", "INSUFFICIENT_FUNDS"
-    elif order_id == "ord_5003": 
+    elif order_id == "ord_1003": 
         return "DECLINED", "CARD_DECLINED"
-    elif order_id == "ord_5009": 
+    elif order_id == "ord_1009": 
         return "TIMEOUT", "GATEWAY_TIMEOUT"
     else: 
         return "SUCCESS", None

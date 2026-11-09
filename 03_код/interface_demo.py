@@ -27,38 +27,51 @@ def process_payment():
         
         result = subprocess.run(
             [sys.executable, app_path, temp_file], 
-            capture_output=True, text=True, encoding="utf-8"
+            capture_output=True, text=True, encoding="utf-8", errors="ignore"
         )
         
-        # Если бэкенд ответил JSON-ом
+        # Словарь для перевода ошибок
+        error_messages = {
+            "INSUFFICIENT_FUNDS": "Недостаточно средств на карте",
+            "CARD_DECLINED": "Банк отклонил карту (возможно, она заблокирована)",
+            "GATEWAY_TIMEOUT": "Банк не отвечает. Попробуйте позже",
+            "AMOUNT_OUT_OF_RANGE": "Неверная сумма платежа",
+            "RECIPIENT_NOT_FOUND": "Получатель не найден или филиал закрыт",
+            "DUPLICATE_ORDER": "Этот заказ уже был оплачен ранее",
+            "VALIDATION_ERROR": "Ошибка в данных запроса"
+        }
+
         if result.stdout:
             response = json.loads(result.stdout)
             
             if response["status"] == "SUCCESS":
                 messagebox.showinfo("Успех", f"Платеж {response['payment_id']} прошел!")
             elif response["status"] == "DECLINED":
-                messagebox.showerror("Отказ", f"Ошибка: {response['error_code']}")
+                err_code = response.get("error_code", "")
+                user_msg = error_messages.get(err_code, f"Ошибка: {err_code}")
+                messagebox.showerror("Отказ банка", user_msg)
             elif response["status"] == "TIMEOUT":
-                messagebox.showwarning("Таймаут", f"Ошибка: {response['error_code']}")
+                err_code = response.get("error_code", "")
+                user_msg = error_messages.get(err_code, "Банк не отвечает")
+                messagebox.showwarning("Таймаут", user_msg)
             elif response["status"] == "ERROR":
-                errors_list = response.get("errors", [])
-                if errors_list:
-                    error_msg = "\n".join([f"{e['field']}: {e['code']}" for e in errors_list])
-                    messagebox.showerror("Ошибка валидации", f"Детали:\n{error_msg}")
+                err_code = response.get("error_code", "")
+                if err_code == "DUPLICATE_ORDER":
+                    msg = response.get("message", "Заказ уже оплачен")
+                    messagebox.showerror("Дубликат", msg)
                 else:
-                    msg = response.get("message", "Неизвестная ошибка")
-                    messagebox.showerror("Дубликат заказа", msg)
+                    user_msg = error_messages.get(err_code, "Ошибка валидации данных")
+                    messagebox.showerror("Ошибка", user_msg)
         else:
-            # Если бэкенд упал
+            # Если бэкенд ничего не ответил (упал)
             messagebox.showerror("Сбой сервиса", f"Ошибка: {result.stderr}")
 
     except Exception as e:
         messagebox.showerror("Системная ошибка", f"{e}")
     finally:
-        # ВОЗВРАЩАЕМ КНОПКУ 
         btn_pay.config(state=tk.NORMAL, text="Оплатить")
 
-#Настройка окна 
+# --- Настройка окна (Tkinter) ---
 root = tk.Tk()
 root.title("Мед-Сервис: Оплата")
 root.geometry("350x650")
@@ -83,7 +96,7 @@ lbl_recipient.pack(pady=(0, 15), padx=15, fill=tk.X)
 
 tk.Label(root, text="Тестовый order_id:", bg="#f0f2f5", font=("Segoe UI", 9)).pack(pady=(10,0))
 entry_order = tk.Entry(root, justify="center")
-entry_order.insert(0, "ord_1001")
+entry_order.insert(0, "ord_1005")
 entry_order.pack(pady=5)
 
 btn_pay = tk.Button(root, text="Оплатить", font=("Segoe UI", 16, "bold"), bg="#28a745", fg="white", 
