@@ -1,3 +1,8 @@
 payment_id,order_id,recipient,purpose,amount,currency,status,error_code,idempotency_key,created_at,confirmed_at,correlation_id
-pay_demo_1002,ord_1002,clinic_medservice,Приём терапевта,2500.0,RUB,SUCCESS,,idem_auto_1002,2026-11-07T15:29:11Z,2026-11-07T15:29:11Z,corr_auto_1002
 pay_demo_5002,ord_5002,clinic_medservice,Приём терапевта,2500.0,RUB,DECLINED,INSUFFICIENT_FUNDS,idem_auto_5002,2026-11-07T15:29:24Z,,corr_auto_5002
+pay_demo_1001,ord_1001,clinic_medservice,Приём терапевта,2500.0,RUB,SUCCESS,,idem_auto_1001,2026-11-09T08:44:55Z,2026-11-09T08:44:55Z,corr_auto_1001
+pay_demo_1005,ord_1005,clinic_medservice,Приём терапевта,2500.0,RUB,SUCCESS,,idem_auto_1005,2026-11-09T08:48:17Z,2026-11-09T08:48:17Z,corr_auto_1005
+pay_demo_1002,ord_1002,clinic_medservice,Приём терапевта,2500.0,RUB,DECLINED,INSUFFICIENT_FUNDS,idem_auto_1002,2026-11-09T08:53:34Z,,corr_auto_1002
+pay_demo_1004,ord_1004,clinic_medservice,Приём терапевта,2500.0,RUB,SUCCESS,,idem_auto_1004,2026-11-09T08:54:08Z,2026-11-09T08:54:08Z,corr_auto_1004
+pay_demo_1003,ord_1003,clinic_medservice,Приём терапевта,2500.0,RUB,DECLINED,CARD_DECLINED,idem_auto_1003,2026-11-09T08:55:12Z,,corr_auto_1003
+pay_demo_1009,ord_1009,clinic_medservice,Приём терапевта,2500.0,RUB,TIMEOUT,GATEWAY_TIMEOUT,idem_auto_1009,2026-11-09T08:56:13Z,,corr_auto_1009
