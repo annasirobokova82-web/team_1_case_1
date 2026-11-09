@@ -62,8 +62,6 @@ def emulate_gateway(order_id):
         return "SUCCESS", None
     elif order_id == "ord_1002": 
         return "DECLINED", "INSUFFICIENT_FUNDS"
-    elif order_id == "ord_1003": 
-        return "DECLINED", "CARD_DECLINED"
     elif order_id == "ord_1009": 
         return "TIMEOUT", "GATEWAY_TIMEOUT"
     else: 

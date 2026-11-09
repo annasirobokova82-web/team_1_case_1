@@ -33,12 +33,10 @@ def process_payment():
         # Словарь для перевода ошибок
         error_messages = {
             "INSUFFICIENT_FUNDS": "Недостаточно средств на карте",
-            "CARD_DECLINED": "Банк отклонил карту (возможно, она заблокирована)",
             "GATEWAY_TIMEOUT": "Банк не отвечает. Попробуйте позже",
             "AMOUNT_OUT_OF_RANGE": "Неверная сумма платежа",
             "RECIPIENT_NOT_FOUND": "Получатель не найден или филиал закрыт",
-            "DUPLICATE_ORDER": "Этот заказ уже был оплачен ранее",
-            "VALIDATION_ERROR": "Ошибка в данных запроса"
+            "DUPLICATE_ORDER": "Этот заказ уже был оплачен ранее",            
         }
 
         if result.stdout:
