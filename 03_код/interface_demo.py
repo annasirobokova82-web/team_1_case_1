@@ -11,7 +11,7 @@ def process_payment():
 
     payload = {
         "order_id": entry_order.get(),
-        "recipient": "clinic_medservice",
+        "recipient": "clinic_medservice_old",
         "purpose": "Приём терапевта",
         "amount": 2500.00,
         "currency": "RUB"
